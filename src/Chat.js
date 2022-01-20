@@ -4,11 +4,17 @@ import './Chat.css'
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import AttachFileIcon from '@mui/icons-material/AttachFile';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
+import MicIcon from '@mui/icons-material/Mic';
 function Chat() {
     const[seed,setSeed]=useState('');
+    const[input,setInput]=useState('');
      useEffect(() =>{
          setSeed(Math.floor(Math.random()*500))
      },[])
+     const sendMessage=(e)=>{
+         e.preventDefault();
+     }
     return (
          <div className="chat">
             <div className="chat_header">
@@ -42,7 +48,14 @@ function Chat() {
              </div>
   
            <div className="chat_footer">
-
+               <InsertEmoticonIcon/>
+               <form>
+                   <input value={input} onChang={(e)=> setInput(e.target.value      
+                   )}
+                   type="text" placeholder="type a message"/>
+                   <button type="submit" onClick={sendMessage}> Send a message</button>
+               </form>
+               <MicIcon/>
           </div>
         </div>
     )
