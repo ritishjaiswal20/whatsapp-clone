@@ -6,10 +6,17 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import { useState } from 'react';
+import Login from './Login';
 function App() {
+  const[user ,setUser]=useState(null);
   return (
     <div className="app">
-        <div className="app_body">
+        {!user?
+        (
+            <Login/>
+        ):(
+          <div className="app_body">
           <Router>
           <Sidebar/>
           <Switch>
@@ -21,6 +28,8 @@ function App() {
             </Switch>
           </Router>
         </div>
+        )}
+       
     </div>
   );
 }
