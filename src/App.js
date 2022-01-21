@@ -8,8 +8,9 @@ import {
 } from "react-router-dom";
 import { useState } from 'react';
 import Login from './Login';
+import { useStateValue } from './StateProvider';
 function App() {
-  const[user ,setUser]=useState(null);
+  const [{user}]=useStateValue();
   return (
     <div className="app">
         {!user?
@@ -24,6 +25,7 @@ function App() {
                <Chat/>
             </Route>
             <Route path="/">
+            <Chat/>
             </Route>
             </Switch>
           </Router>
@@ -33,5 +35,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

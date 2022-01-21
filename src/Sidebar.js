@@ -8,8 +8,10 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import SidebarChat from './SidebarChat';
 import db from './firebase';
+import { useStateValue } from './StateProvider';
 function Sidebar() {
   const[rooms,setRooms]=useState([]);
+  const[{user}]=useStateValue();
      useEffect(()=>{
     const unsubscribe= db.collection("rooms").onSnapshot((snapshot)=>
            setRooms(
@@ -26,7 +28,7 @@ function Sidebar() {
     return (
         <div className="sidebar">
             <div className="sidebar_header">
-              <Avatar/>
+              <Avatar src={user?.photoURL} />
               <div className="sidebar_headerRight">
                   <IconButton>
                   <DonutLargeIcon/>
@@ -49,7 +51,7 @@ function Sidebar() {
               </div>
             </div>   
             <div className="sidebar_chats">
-             
+                 <SidebarChat addNewChat/>
                   {rooms.map((room)=>(
                     <SidebarChat key={room.id} id={room.id} name={room.data.name}/> 
                   ))}
