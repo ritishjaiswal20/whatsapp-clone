@@ -9,7 +9,7 @@ import MicIcon from '@mui/icons-material/Mic';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import db from './firebase';
 import { useStateValue } from './StateProvider';
-import firebase from './firebase';
+import firebase from 'firebase';
 function Chat() {
     const[seed,setSeed]=useState('');
     const[input,setInput]=useState('');
@@ -36,15 +36,29 @@ function Chat() {
      useEffect(() =>{
          setSeed(Math.floor(Math.random()*5000))
      },[])
-     const sendMessage=(e)=>{
-         e.preventDefault();
-         db.collection('rooms').doc(roomId).collection('messages').add({
-             message:input,
-             name:user.displayName,
-             timeStamp:firebase.firestore.FieldValue.serverTimeStamp(),
-         })
+    //  const sendMessage=(e)=>{
+    //      e.preventDefault();
+    //      db.collection('rooms').doc(roomId).collection('messages').add({
+    //          message:input,
+    //          name:user.displayName,
+    //         //  timeStamp:firebase.firestore.FieldValue.serverTimeStamp(),
+    //      })
+    //     setInput("");
+    //     }
+    const sendMessage = (e) => {
+        e.preventDefault();
+
+        db.collection("rooms").doc(roomId).collection("messages").add({
+            message: input,
+            name: user.displayName,
+            // timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            timestamp: firebase.firestore.FieldValue.serverTimestamp() || null
+        
+
+        })
+
         setInput("");
-        }
+    }
     return (
          <div className="chat">
             <div className="chat_header">
@@ -69,26 +83,23 @@ function Chat() {
             </div>
 
             <div className="chat_body">
-                  {messages.map(message=>(
-                      <p className={`chat_message ${true && "chat_reciver"}`}>
+                  {messages.map((message,index)=>(
+                      <div key={index} >
+                      <p  className={`chat_message ${true && "chat_reciver"}`}>
                         
 
                         <span className="chat_name">
                             {message.name}
                         </span>
                         {message.message}
-                        <span className="chat_timestamp">
+                        <span  className="chat_timestamp">
                           {new Date(message.timestamp ?.toDate()).toUTCString()}    
                         </span>            
                        </p>
-                     
+                     </div>
                   ))}
              </div>
   
-
-
-
-
 
            <div className="chat_footer">
                <InsertEmoticonIcon/>
@@ -105,8 +116,4 @@ function Chat() {
 }
 
 export default Chat
-
-
-
-
 

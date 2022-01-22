@@ -9,32 +9,64 @@ import {
 import { useState } from 'react';
 import Login from './Login';
 import { useStateValue } from './StateProvider';
+// function App() {
+//   const [{user}]=useStateValue();
+//   return (
+//     <div className="app">
+//         {!user?
+//         (
+//             <Login/>
+//         ):(
+//           <>
+//           <div className="app_body">
+//           <Router>
+//           <Sidebar/>
+//           <Switch>
+//             <Route path="/rooms/:roomId"> 
+//                <Chat/>
+//             </Route>
+//             <Route path="/"  exact >
+//             <Chat/>
+//             </Route>
+//             </Switch>
+//           </Router>
+//         </div>
+//         </>
+//         )}
+       
+//     </div>
+//   );
+// }
+// export default App;
+
+
 function App() {
-  const [{user}]=useStateValue();
+  const [{ user }] = useStateValue();
+
   return (
     <div className="app">
-        {!user?
-        (
-            <Login/>
-        ):(
-          <>
+      {!user ? (
+        <Login />
+      ) : (
+        <>
           <div className="app_body">
-          <Router>
-          <Sidebar/>
-          <Switch>
-            <Route path="/rooms/:roomId"> 
-               <Chat/>
-            </Route>
-            <Route path="/">
-            <Chat/>
-            </Route>
-            </Switch>
-          </Router>
-        </div>
+            <Router>
+              <Sidebar />
+              <Switch>
+                <Route path="/rooms/:roomId">
+                  <Chat />
+                </Route>
+                <Route path="/" exact >
+                  <Chat />
+                </Route>
+              </Switch>
+            </Router>
+          </div >
         </>
-        )}
-       
-    </div>
+      )
+      }
+    </div >
   );
 }
+
 export default App;
