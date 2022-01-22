@@ -6,7 +6,7 @@ import {actionTypes} from  "./Reducer"
 import { useStateValue } from './StateProvider';
 function Login() {
  
-    const [{ }, dispatch] = useStateValue();
+    const [{}, dispatch] = useStateValue();
     
     const signIn = () => {
         auth.signInWithPopup(provider)
@@ -25,7 +25,7 @@ function Login() {
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5uUlwuJrTpcZtktT58GuXAlzjAUORPpSnAJQUs5DIsL6odOvxhLnu0rou97KxvMJkUzs&usqp=CAU"
                 // height="300px"
                 // width="300px"
-                alt=""
+                alt="whatsapplogo"
             />
             <div className="login_text">
                 <h2>Sign in to  whastapp </h2>

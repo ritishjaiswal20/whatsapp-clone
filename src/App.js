@@ -17,6 +17,7 @@ function App() {
         (
             <Login/>
         ):(
+          <>
           <div className="app_body">
           <Router>
           <Sidebar/>
@@ -30,6 +31,7 @@ function App() {
             </Switch>
           </Router>
         </div>
+        </>
         )}
        
     </div>

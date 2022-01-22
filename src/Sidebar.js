@@ -12,19 +12,23 @@ import { useStateValue } from './StateProvider';
 function Sidebar() {
   const[rooms,setRooms]=useState([]);
   const[{user}]=useStateValue();
-     useEffect(()=>{
-    const unsubscribe= db.collection("rooms").onSnapshot((snapshot)=>
-           setRooms(
-             snapshot.docs.map((doc)=>({
-               id:doc.id,
-               data:doc.data(),
-             }))
-           )
-       );
-       return ()=>{
-           unsubscribe();
-       };
-     },[]);
+
+  useEffect(() => {
+    const unsubscribe = db.collection("rooms").onSnapshot(snapshot => (
+        setRooms(snapshot.docs.map(doc =>
+        ({
+            id: doc.id,
+            data: doc.data()
+        })
+        ))
+    ));
+
+    return () => {
+        unsubscribe();
+    }
+
+}, [])
+
     return (
         <div className="sidebar">
             <div className="sidebar_header">

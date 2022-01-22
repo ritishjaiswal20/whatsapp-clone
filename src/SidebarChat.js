@@ -5,6 +5,7 @@ import db from './firebase';
 import './SidebarChat.css'
 function SidebarChat({id,name,addNewChat}) {
     const[seed,setSeed]=useState('');
+    const [messages, setMessages] = useState("");
      useEffect(() =>{
          setSeed(Math.floor(Math.random()*500))
      },[])
@@ -35,3 +36,4 @@ function SidebarChat({id,name,addNewChat}) {
 }
 
 export default SidebarChat
+
