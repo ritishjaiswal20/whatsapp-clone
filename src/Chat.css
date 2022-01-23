@@ -35,6 +35,10 @@
     overflow:scroll;
 }
 
+.chat_body::-webkit-scrollbar {
+    display: none;
+  }
+
 .chat_message{
     position:relative;
     font-size:16px;
@@ -74,6 +78,7 @@
     flex:1;
     border-radius:30px;
     padding:10px;
+    border:none;
 }
 .chat_footer >form >button{
     display:none;

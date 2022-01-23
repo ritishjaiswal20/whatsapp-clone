@@ -13,6 +13,7 @@ function SidebarChat({id,name,addNewChat}) {
                 doc.data()))
                 );
         }
+        
     },[id])
          
 
